@@ -4,7 +4,8 @@ import { PlayCircleOutlined, PauseCircleOutlined } from '@ant-design/icons'; // 
 import { useAppLanguage } from '../../components/AppLanguageContext'; // Import hook ngôn ngữ
 
 const Section2 = () => {
-  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [isSpeakingGenZ1, setIsSpeakingGenZ1] = useState(false);
+  const [isSpeakingGenZ2, setIsSpeakingGenZ2] = useState(false);
   const [speechSynthesis, setSpeechSynthesis] = useState(null); // lưu trữ đối tượng SpeechSynthesis
   const { language } = useAppLanguage(); // Lấy ngôn ngữ từ context
 
@@ -17,8 +18,8 @@ const Section2 = () => {
     ? `Thuật ngữ Gen Z lần đầu tiên được sử dụng trong một bài viết trên Ad Age vào tháng 9 năm 2000. Vì thế hệ này ra đời ngay sau Gen Y, nên được gọi là Gen Z. Đây là thế hệ được sinh ra trong kỷ nguyên Internet, khác biệt với thế hệ Y, vốn sinh ra trong quá trình hình thành và phát triển của Internet. Gen Z là thế hệ đầu tiên sinh ra sau thời kỳ phổ cập Internet.`
     : `The term Gen Z was first used in an article on Ad Age in September 2000. As this generation came right after Gen Y, it was called Gen Z. This is the generation born in the Internet age, different from Generation Y, which was born during the formation and development of the Internet. Gen Z is the first generation born after the era of widespread Internet adoption.`;
 
-  const handleSpeech = (text) => {
-    if (!isSpeaking) {
+  const handleSpeechGenZ1 = (text) => {
+    if (!isSpeakingGenZ1) {
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = language === 'vi' ? 'vi-VN' : 'en-US'; // Ngôn ngữ tùy theo context
 
@@ -30,17 +31,43 @@ const Section2 = () => {
 
       speechSynthesis.speak(utterance);
 
-      utterance.onend = () => setIsSpeaking(false);
+      utterance.onend = () => setIsSpeakingGenZ1(false);
 
-      setIsSpeaking(true);
+      setIsSpeakingGenZ1(true);
     }
   };
 
-  const handleStop = () => {
+  const handleSpeechGenZ2 = (text) => {
+    if (!isSpeakingGenZ2) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = language === 'vi' ? 'vi-VN' : 'en-US'; // Ngôn ngữ tùy theo context
+
+      const voices = speechSynthesis.getVoices();
+      const voice = voices.find(v => v.lang === (language === 'vi' ? 'vi-VN' : 'en-US'));
+      if (voice) {
+        utterance.voice = voice;
+      }
+
+      speechSynthesis.speak(utterance);
+
+      utterance.onend = () => setIsSpeakingGenZ2(false);
+
+      setIsSpeakingGenZ2(true);
+    }
+  };
+
+  const handleStopGenZ1 = () => {
     if (speechSynthesis) {
       speechSynthesis.cancel();
     }
-    setIsSpeaking(false);
+    setIsSpeakingGenZ1(false);
+  };
+
+  const handleStopGenZ2 = () => {
+    if (speechSynthesis) {
+      speechSynthesis.cancel();
+    }
+    setIsSpeakingGenZ2(false);
   };
 
   useEffect(() => {
@@ -55,45 +82,57 @@ const Section2 = () => {
         </h2>
       </div>
 
+      {/* Section 1 - Gen Z 1 */}
       <div className="flex flex-col mb-6">
         <div className="flex justify-between items-center">
           <p className="text-3xl text-white font-light leading-relaxed w-11/12">
             {textGenZ1}
           </p>
-          <Button
-            onClick={() => handleSpeech(textGenZ1)}
-            icon={<PlayCircleOutlined />}
-            shape="circle"
-            size="large"
-            style={{ marginLeft: 'auto' }}
-          />
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => handleSpeechGenZ1(textGenZ1)}
+              icon={isSpeakingGenZ1 ? <PauseCircleOutlined /> : <PlayCircleOutlined />}
+              shape="circle"
+              size="large"
+            />
+            {isSpeakingGenZ1 && (
+              <Button
+                onClick={handleStopGenZ1}
+                icon={<PauseCircleOutlined />}
+                shape="circle"
+                size="large"
+                style={{ marginTop: '10px' }}
+              />
+            )}
+          </div>
         </div>
       </div>
 
+      {/* Section 2 - Gen Z 2 */}
       <div className="flex flex-col mb-6">
         <div className="flex justify-between items-center">
           <p className="text-3xl text-white font-light leading-relaxed w-11/12">
             {textGenZ2}
           </p>
-          <Button
-            onClick={() => handleSpeech(textGenZ2)}
-            icon={<PlayCircleOutlined />}
-            shape="circle"
-            size="large"
-            style={{ marginLeft: 'auto' }}
-          />
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => handleSpeechGenZ2(textGenZ2)}
+              icon={isSpeakingGenZ2 ? <PauseCircleOutlined /> : <PlayCircleOutlined />}
+              shape="circle"
+              size="large"
+            />
+            {isSpeakingGenZ2 && (
+              <Button
+                onClick={handleStopGenZ2}
+                icon={<PauseCircleOutlined />}
+                shape="circle"
+                size="large"
+                style={{ marginTop: '10px' }}
+              />
+            )}
+          </div>
         </div>
       </div>
-
-      {isSpeaking && (
-        <Button
-          onClick={handleStop}
-          icon={<PauseCircleOutlined />}
-          shape="circle"
-          size="large"
-          style={{ position: 'absolute', top: '20px', right: '20px' }}
-        />
-      )}
     </div>
   );
 };

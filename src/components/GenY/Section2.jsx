@@ -1,20 +1,22 @@
 import { useState, useEffect } from 'react';
 import { Button } from 'antd';
 import { PlayCircleOutlined, PauseCircleOutlined } from '@ant-design/icons'; // Import Ant Design icons
-import { useAppLanguage } from '../AppLanguageContext'; // Import hook ngôn ngữ
+import { useAppLanguage } from '../../components/AppLanguageContext'; // Import hook ngôn ngữ
 
 const Section2 = () => {
-  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [isSpeakingGenZ1, setIsSpeakingGenZ1] = useState(false);
+ 
   const [speechSynthesis, setSpeechSynthesis] = useState(null); // lưu trữ đối tượng SpeechSynthesis
   const { language } = useAppLanguage(); // Lấy ngôn ngữ từ context
 
   // Đoạn văn bản tùy theo ngôn ngữ
-  const textGenY = language === 'vi'
+
+    const textGenZ1 = language === 'vi'
     ? `Gen Y là thế hệ lớn lên trong thời kỳ phát triển và chuyển đổi mạnh mẽ về công nghệ và kinh tế toàn cầu. Thế hệ Gen Y còn được biết đến với sự phát triển và lớn lên trong điều kiện thế giới hội nhập và những ông lớn trong các lĩnh vực công nghệ trong quá trình phát triển như Google, FaceBook, X, Linkedin, PayPal. Thế hệ này là những người đầu tiên tiếp cận với công nghệ, truyền thông, các mạng xã hội, Blog mà cho tới ngày nay vẫn gọi là thời đại công nghệ 3.0.`
     : `Generation Y is the generation that grew up during a period of significant technological and economic transformation globally. Gen Y is also known for developing and growing up in an era of global integration, alongside tech giants like Google, Facebook, X, Linkedin, and PayPal. This generation was the first to embrace technology, media, social networks, and blogs, which to this day is still referred to as the era of Technology 3.0.`;
 
-  const handleSpeech = (text) => {
-    if (!isSpeaking) {
+  const handleSpeechGenZ1 = (text) => {
+    if (!isSpeakingGenZ1) {
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = language === 'vi' ? 'vi-VN' : 'en-US'; // Ngôn ngữ tùy theo context
 
@@ -26,18 +28,21 @@ const Section2 = () => {
 
       speechSynthesis.speak(utterance);
 
-      utterance.onend = () => setIsSpeaking(false);
+      utterance.onend = () => setIsSpeakingGenZ1(false);
 
-      setIsSpeaking(true);
+      setIsSpeakingGenZ1(true);
     }
   };
 
-  const handleStop = () => {
+
+  const handleStopGenZ1 = () => {
     if (speechSynthesis) {
       speechSynthesis.cancel();
     }
-    setIsSpeaking(false);
+    setIsSpeakingGenZ1(false);
   };
+
+
 
   useEffect(() => {
     setSpeechSynthesis(window.speechSynthesis);
@@ -51,30 +56,36 @@ const Section2 = () => {
         </h2>
       </div>
 
+      {/* Section 1 - Gen Z 1 */}
       <div className="flex flex-col mb-6">
         <div className="flex justify-between items-center">
           <p className="text-3xl text-white font-light leading-relaxed w-11/12">
-            {textGenY}
+            {textGenZ1}
           </p>
-          <Button
-            onClick={() => handleSpeech(textGenY)}
-            icon={<PlayCircleOutlined />}
-            shape="circle"
-            size="large"
-            style={{ marginLeft: 'auto' }}
-          />
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => handleSpeechGenZ1(textGenZ1)}
+              icon={isSpeakingGenZ1 ? <PauseCircleOutlined /> : <PlayCircleOutlined />}
+              shape="circle"
+              size="large"
+            />
+            {isSpeakingGenZ1 && (
+              <Button
+                onClick={handleStopGenZ1}
+                icon={<PauseCircleOutlined />}
+                shape="circle"
+                size="large"
+                style={{ marginTop: '10px' }}
+              />
+            )}
+          </div>
         </div>
       </div>
 
-      {isSpeaking && (
-        <Button
-          onClick={handleStop}
-          icon={<PauseCircleOutlined />}
-          shape="circle"
-          size="large"
-          style={{ position: 'absolute', top: '20px', right: '20px' }}
-        />
-      )}
+    
+      
+     
+    
     </div>
   );
 };
