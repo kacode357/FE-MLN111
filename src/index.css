@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Style for Menu Items with custom font */
+.ant-menu-item {
+  font-family: 'Varela Round', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Hover effect for menu items */
+.ant-menu-item:hover {
+  background-color: #f1c40f !important; /* Yellow on hover */
+  color: #fff !important;
+  border-radius: 3px !important;
+}
+
+.ant-menu-item-selected {
+  background-color: #f1c40f !important; /* Yellow when selected */
+  color: #fff !important;
+  border-radius: 3px !important;
+}
+
+
+/* For mobile devices */
+@media (max-width: 768px) {
+    .mobile-menu-button {
+      display: block; /* Show the hamburger menu button on mobile */
+    }
+    
+    .desktop-menu {
+      display: none; /* Hide the desktop menu on mobile */
+    }
+  }
+  
