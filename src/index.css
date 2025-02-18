@@ -21,6 +21,23 @@
   color: #fff !important;
   border-radius: 3px !important;
 }
+/* App.css */
+/* Customizing the Drawer background color to yellow */
+
+
+.ant-drawer-content {
+  background-color: #f4c40c !important; /* Yellow background for the content inside Drawer */
+}
+
+.ant-drawer-title {
+  color: #08142c !important; /* Title color white for contrast */
+}
+
+.ant-drawer-close {
+  color: #08142c !important; /* Close button color white */
+}
+
+/* Optionally, you can also style the overlay (background that appears behind the Drawer when it's open) */
 
 
 /* For mobile devices */
