@@ -8,9 +8,11 @@ import HeaderMobile from './components/HeaderMobile';
 
 import Home from './components/GenZ/GenZ';
 import GenY from './components/GenY/GenY';
-import Services from './components/Services';
-import Contact from './components/Contact';
+import Content from './components/Content/Content';
+import Contact from './components/Contact/Contact';
+import KarlMarx from './components/KarlMarx/KarlMarx';
 import { Layout } from 'antd';
+
 
 export default function App() {
   const isDesktop = useMediaQuery({ minWidth: 768 });
@@ -25,8 +27,9 @@ export default function App() {
           <Layout style={{ paddingTop: '60px', backgroundColor: '#08142c' }}>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/GenY" element={<GenY />} />
-              <Route path="/services" element={<Services />} />
+              <Route path="/genY" element={<GenY />} />
+              <Route path="/content" element={<Content />} />
+              <Route path="/karlMarx" element={<KarlMarx />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
           </Layout>

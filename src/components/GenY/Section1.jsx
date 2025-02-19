@@ -47,6 +47,29 @@ const Section1 = () => {
   return (
     <div className="p-5 my-3" style={{ backgroundColor: '#08142c' }}>
       <div className="flex flex-col sm:flex-row md:grid md:grid-cols-10 gap-4">
+      
+
+        <div className="sm:w-full md:col-span-3 p-4 rounded text-center">
+          <a 
+            href="https://www.facebook.com/dangthuhaf.official/?locale=vi_VN" 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            <img 
+              src={dangthuhaImage} 
+              alt="Đăng Thu Hà" 
+              className="w-2/3 sm:w-3/4 h-auto mx-auto rounded mb-3"
+            />
+          </a>
+          <a 
+            href="https://www.facebook.com/KhoaiLangThang/?locale=vi_VN" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="font-bold text-white underline hover:text-blue-800"
+          >
+            Khoai Lang Thang
+          </a>
+        </div>
         <div className="sm:w-full md:col-span-7 p-4 rounded relative">
           <h3 className="text-5xl sm:text-5xl md:text-5xl font-extrabold mb-5" style={{ color: '#f1c40f' }}>
             {language === 'vi' ? 'Thế hệ Gen Y' : 'Generation Y'}
@@ -74,28 +97,6 @@ const Section1 = () => {
               )}
             </div>
           </div>
-        </div>
-
-        <div className="sm:w-full md:col-span-3 p-4 rounded text-center">
-          <a 
-            href="https://www.facebook.com/dangthuhaf.official/?locale=vi_VN" 
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            <img 
-              src={dangthuhaImage} 
-              alt="Đăng Thu Hà" 
-              className="w-2/3 sm:w-3/4 h-auto mx-auto rounded mb-3"
-            />
-          </a>
-          <a 
-            href="https://www.facebook.com/KhoaiLangThang/?locale=vi_VN" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="font-bold text-white underline hover:text-blue-800"
-          >
-            Khoai Lang Thang
-          </a>
         </div>
       </div>
     </div>

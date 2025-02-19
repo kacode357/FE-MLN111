@@ -26,18 +26,53 @@
 
 
 .ant-drawer-content {
-  background-color: #f4c40c !important; /* Yellow background for the content inside Drawer */
+  background-color: #08142c !important; /* Yellow background for the content inside Drawer */
 }
 
 .ant-drawer-title {
-  color: #08142c !important; /* Title color white for contrast */
+  color: #ffffff !important; /* Title color white for contrast */
 }
 
 .ant-drawer-close {
-  color: #08142c !important; /* Close button color white */
+  color: #ffffff !important; /* Close button color white */
 }
 
 /* Optionally, you can also style the overlay (background that appears behind the Drawer when it's open) */
+/* Style for Collapse component */
+.ant-collapse {
+  background-color: #08142c !important; /* Dark background for the entire Collapse */
+}
+
+.ant-collapse-header {
+  background-color: #08142c !important; /* Header background color */
+  color: #fff !important; /* White text color */
+  font-weight: bold;
+}
+
+.ant-collapse-header:hover {
+  background-color: #1a2a45 !important; /* Lighter shade on hover */
+}
+
+.ant-collapse-content {
+  background-color: #08142c !important; /* Dark background for content area */
+}
+
+.ant-collapse-content-box {
+  color: #fff !important; /* White text color for collapse content */
+}
+
+/* Ensure the Panel text color is white */
+.ant-collapse-item {
+  border: none !important; /* Remove default border */
+}
+
+.ant-collapse-item.ant-collapse-item-active .ant-collapse-header {
+  background-color: #1a2a45 !important; /* Active panel header hover color */
+}
+
+.ant-collapse-item-active .ant-collapse-content {
+  background-color: #1a2a45 !important; /* Active panel content color */
+}
 
 
 /* For mobile devices */

@@ -1,5 +1,5 @@
 import { Menu } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom'; // Thêm useLocation để lấy đường dẫn
 import { useAppLanguage } from '../components/AppLanguageContext'; // Import hook
 
 const menuItemStyle = {
@@ -10,10 +10,28 @@ const menuItemStyle = {
   fontFamily: 'Varela Round, sans-serif',
   fontWeight: 'bold',
   fontSize: '16px',
+  margin: '0 3px', // Thêm margin để tạo khoảng cách giữa các item
 };
 
 const HeaderDesktop = () => {
   const { language, toggleLanguage } = useAppLanguage(); // Lấy ngôn ngữ và hàm đổi ngôn ngữ từ context
+  const location = useLocation(); // Lấy location để biết đường dẫn hiện tại
+
+  // Hàm xác định menu nào đang được chọn dựa trên đường dẫn hiện tại
+  const getMenuSelectedKey = () => {
+    const path = location.pathname; // Lấy đường dẫn hiện tại
+
+    if (path === '/genY') {
+      return '2';
+    } else if (path === '/karlMarx') {
+      return '3';
+    } else if (path === '/content') {
+      return '4';
+    } else if (path === '/contact') {
+      return '5';
+    }
+    return '1'; // Mặc định là GenZ
+  };
 
   return (
     <>
@@ -25,8 +43,8 @@ const HeaderDesktop = () => {
           padding: '5px',
           height: '45px',
           borderRadius: '7px',
-          backgroundColor: '#001529',
-          width: '500px',
+          backgroundColor: '#003d50',
+          width: '640px', // Increased width for more space
           marginTop: '10px',
           position: 'fixed',
           left: '50%',
@@ -39,26 +57,30 @@ const HeaderDesktop = () => {
         <Menu
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={['1']}
+          selectedKeys={[getMenuSelectedKey()]} // Xác định menu đang được chọn dựa trên đường dẫn
           style={{
+           
             display: 'flex',
             justifyContent: 'space-between',
             backgroundColor: 'transparent',
             border: 'none',
-            width: 'auto',
+            width: 'auto', // Ensures the menu is flexible based on items
           }}
         >
-          <Menu.Item key="1" style={menuItemStyle}>
+          <Menu.Item key="1" style={menuItemStyle} >
             <Link to="/">{language === 'vi' ? 'GenZ' : 'GenZ'}</Link>
           </Menu.Item>
           <Menu.Item key="2" style={menuItemStyle}>
-            <Link to="/GenY">{language === 'vi' ? 'GenY' : 'GenY'}</Link>
+            <Link to="/genY">{language === 'vi' ? 'GenY' : 'GenY'}</Link>
           </Menu.Item>
           <Menu.Item key="3" style={menuItemStyle}>
-            <Link to="/services">{language === 'vi' ? 'Dịch vụ' : 'Services'}</Link>
+            <Link to="/karlMarx">{language === 'vi' ? 'Karl Marx' : 'Karl Marx'}</Link>
           </Menu.Item>
           <Menu.Item key="4" style={menuItemStyle}>
-            <Link to="/contact">{language === 'vi' ? 'Liên hệ' : 'Contact'}</Link>
+            <Link to="/content">{language === 'vi' ? 'Nội dung' : 'Content'}</Link>
+          </Menu.Item>
+          <Menu.Item key="5" style={menuItemStyle}>
+            <Link to="/contact">{language === 'vi' ? 'Liên Hệ' : 'Contact'}</Link>
           </Menu.Item>
         </Menu>
       </div>
@@ -69,13 +91,13 @@ const HeaderDesktop = () => {
           color: 'white',
           fontWeight: 'bold',
           cursor: 'pointer',
-          width: '250px',
+          width: '180px',
           backgroundColor: '#f4c40c', // Set background color to #f4c40c
           padding: '5px 10px',
           borderRadius: '5px',
           position: 'fixed',  // Fix the position
           top: '20px',  // Set top position relative to the viewport
-          right: '220px',  // Set right position to align it with the right edge
+          right: '20px',  // Set right position to align it with the right edge
           zIndex: 2000,  // Ensure it stays on top of other elements
           display: 'flex',  // Use flexbox to center content
           justifyContent: 'center',  // Center horizontally
@@ -83,7 +105,7 @@ const HeaderDesktop = () => {
         }}
         onClick={toggleLanguage}
       >
-        {language === 'vi' ? 'Bấm để chuyển sang Tiếng Anh' : 'Click to switch to Vietnamese'}
+        {language === 'vi' ? 'Chuyển sang Tiếng Anh' : 'Switch to Vietnamese'}
       </div>
     </>
   );

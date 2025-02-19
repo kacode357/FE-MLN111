@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { MenuOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { useAppLanguage } from '../components/AppLanguageContext'; // Import hook ngôn ngữ
+import { useLocation } from 'react-router-dom'; // Import useLocation
 
 const menuItemStyle = {
   display: 'flex',
@@ -16,9 +17,16 @@ const menuItemStyle = {
 const HeaderMobile = () => {
   const [visible, setVisible] = useState(false);
   const { language, toggleLanguage } = useAppLanguage(); // Lấy ngôn ngữ và hàm đổi ngôn ngữ từ context
+  const location = useLocation(); // Lấy location từ react-router
 
   const showDrawer = () => setVisible(true);
   const closeDrawer = () => setVisible(false);
+
+  // Xác định key của menu dựa trên đường dẫn hiện tại
+  const selectedKey = location.pathname === '/genY' ? '2' :
+                      location.pathname === '/karlMarx' ? '3' :
+                      location.pathname === '/content' ? '4' :
+                      location.pathname === '/blog' ? '5' : '1';
 
   return (
     <div
@@ -43,7 +51,7 @@ const HeaderMobile = () => {
         }}
         onClick={showDrawer}
       />
-      
+
       {/* Menu text centered */}
       <span
         style={{
@@ -65,18 +73,35 @@ const HeaderMobile = () => {
         visible={visible}
         width={250}
       >
-        <Menu mode="vertical" theme="dark" defaultSelectedKeys={['1']}>
+        <Menu
+          mode="vertical"
+          theme="dark"
+          selectedKeys={[selectedKey]} // Chọn item dựa trên đường dẫn
+        >
           <Menu.Item key="1" style={menuItemStyle}>
-            <Link to="/" onClick={closeDrawer}>GenZ</Link>
+            <Link to="/" onClick={closeDrawer}>
+              {language === 'vi' ? 'GenZ' : 'GenZ'}
+            </Link>
           </Menu.Item>
           <Menu.Item key="2" style={menuItemStyle}>
-            <Link to="/GenY" onClick={closeDrawer}>GenY</Link>
+            <Link to="/genY" onClick={closeDrawer}>
+              {language === 'vi' ? 'GenY' : 'GenY'}
+            </Link>
           </Menu.Item>
           <Menu.Item key="3" style={menuItemStyle}>
-            <Link to="/services" onClick={closeDrawer}>Dịch vụ</Link>
+            <Link to="/karlMarx" onClick={closeDrawer}>
+              {language === 'vi' ? 'Karl Marx' : 'Karl Marx'}
+            </Link>
           </Menu.Item>
           <Menu.Item key="4" style={menuItemStyle}>
-            <Link to="/contact" onClick={closeDrawer}>Liên hệ</Link>
+            <Link to="/content" onClick={closeDrawer}>
+              {language === 'vi' ? 'Nội dung' : 'Content'}
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="5" style={menuItemStyle}>
+            <Link to="/contact" onClick={closeDrawer}>
+              {language === 'vi' ? 'Liên Hệ' : 'Contact'}
+            </Link>
           </Menu.Item>
         </Menu>
 
