@@ -35,7 +35,7 @@ const HeaderDesktop = () => {
           padding: '5px',
           height: '45px',
           borderRadius: '7px',
-          backgroundColor: '#003d50',
+          backgroundColor: '#060f21ea',
           width: '640px',
           marginTop: '15px',
           position: 'fixed',
