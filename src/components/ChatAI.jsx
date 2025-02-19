@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-
+import logoai from '../assets/logoai.png';
 const ChatAI = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -63,16 +63,18 @@ const ChatAI = () => {
   return (
     <div>
       <button
-        className="fixed bottom-5 right-5 bg-green-500 text-white py-3 px-6 rounded-full shadow-lg hover:bg-green-600 transition"
+        className="fixed bottom-5 right-5  text-white py-3 px-6 rounded-full shadow-lg hover:bg-blue-600 transition"
         onClick={toggleChat}
       >
-        Chat AI
+        {/* Thay thế chữ "Chat AI" bằng ảnh logoai.png */}
+        <img src={logoai} alt="Logo AI" className="w-20 h-20" />
       </button>
 
       {isOpen && (
         <div className="fixed bottom-20 right-5 w-80 bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden transition-all duration-300">
-          <div className="bg-green-500 text-white p-3 rounded-t-lg flex justify-between items-center">
-            <span className="font-semibold text-lg">AI Chat</span>
+          <div className="bg-blue-500 text-white p-3 rounded-t-lg flex justify-between items-center">
+            {/* Thay thế chữ "AI Chat" bằng ảnh logoai.png */}
+            <img src={logoai} alt="Logo AI" className="w-8 h-8" />
             <button
               className="text-white font-bold text-xl"
               onClick={toggleChat}
@@ -105,7 +107,7 @@ const ChatAI = () => {
               />
               <button
                 type="submit"
-                className="ml-2 bg-green-500 text-white p-2 rounded-full hover:bg-green-600 transition"
+                className="ml-2 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition"
                 disabled={loading || !userMessage.trim()}
               >
                 Send
