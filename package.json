@@ -14,6 +14,7 @@
     "@google-cloud/text-to-speech": "^5.8.0",
     "antd": "^5.24.1",
     "axios": "^1.7.9",
+    "emailjs-com": "^3.2.0",
     "framer-motion": "^11.17.0",
     "i18next": "^24.2.2",
     "prop-types": "^15.8.1",

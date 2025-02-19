@@ -20,7 +20,7 @@ const HeaderDesktop = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-[#08142c] shadow-md z-50 flex items-center justify-between px-10 py-3">
+    <header className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-10 py-3">
       {/* Logo */}
       <Link to="/">
         <img src={logo} alt="Logo" className="h-14" />

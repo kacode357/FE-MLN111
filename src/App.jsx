@@ -12,6 +12,7 @@ import Content from './components/Content/Content';
 import Contact from './components/Contact/Contact';
 import KarlMarx from './components/KarlMarx/KarlMarx';
 import { Layout } from 'antd';
+import FooterComponent from './components/Footer';
 
 export default function App() {
   const isDesktop = useMediaQuery({ minWidth: 768 });
@@ -37,6 +38,7 @@ export default function App() {
               <Route path="/contact" element={<Contact />} />
             </Routes>
           </Layout>
+          <FooterComponent />
         </Layout>
       </Router>
     </AppLanguageProvider>
