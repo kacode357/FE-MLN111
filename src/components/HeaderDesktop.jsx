@@ -1,7 +1,7 @@
 import { Menu } from 'antd';
 import { Link, useLocation } from 'react-router-dom'; // Thêm useLocation để lấy đường dẫn
 import { useAppLanguage } from '../components/AppLanguageContext'; // Import hook
-
+import logo from '../assets/logomln1.png';
 const menuItemStyle = {
   width: '120px',
   display: 'flex',
@@ -38,6 +38,23 @@ const HeaderDesktop = () => {
       <div
         style={{
           display: 'flex',
+          justifyContent: 'flex-start', // Align items to the left
+          alignItems: 'center',
+          position: 'fixed',
+          left: '300px', // Position it to the left
+          top: '20px',
+          zIndex: 2000, // Ensure it stays on top of other elements
+        }}
+      >
+        {/* Logo */}
+        <img src={logo} alt="Logo" style={{ height: '70px', marginRight: '15px' }} />
+
+        {/* Nút đổi ngôn ngữ */}
+      
+      </div>
+      <div
+        style={{
+          display: 'flex',
           justifyContent: 'space-between', // Đặt các phần tử cách đều
           alignItems: 'center',
           padding: '5px',
@@ -45,7 +62,7 @@ const HeaderDesktop = () => {
           borderRadius: '7px',
           backgroundColor: '#003d50',
           width: '640px', // Increased width for more space
-          marginTop: '10px',
+          marginTop: '25px',
           position: 'fixed',
           left: '50%',
           transform: 'translateX(-50%)',
@@ -54,6 +71,7 @@ const HeaderDesktop = () => {
         }}
       >
         {/* Menu */}
+        
         <Menu
           theme="dark"
           mode="horizontal"
@@ -96,7 +114,7 @@ const HeaderDesktop = () => {
           padding: '5px 10px',
           borderRadius: '5px',
           position: 'fixed',  // Fix the position
-          top: '20px',  // Set top position relative to the viewport
+          top: '30px',  // Set top position relative to the viewport
           right: '20px',  // Set right position to align it with the right edge
           zIndex: 2000,  // Ensure it stays on top of other elements
           display: 'flex',  // Use flexbox to center content

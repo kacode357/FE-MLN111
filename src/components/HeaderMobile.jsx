@@ -5,6 +5,9 @@ import { useState } from 'react';
 import { useAppLanguage } from '../components/AppLanguageContext'; // Import hook ngôn ngữ
 import { useLocation } from 'react-router-dom'; // Import useLocation
 
+// Import your logo
+import logo from '../assets/logomln1.png'; // Adjust the path as needed
+
 const menuItemStyle = {
   display: 'flex',
   alignItems: 'center',
@@ -41,30 +44,34 @@ const HeaderMobile = () => {
         zIndex: 1000,
       }}
     >
+      {/* Logo */}
+      <img
+        src={logo}
+        alt="Logo"
+        style={{
+          height: '40px', // Adjust size of logo
+          position: 'absolute',
+          left: '50%',
+          transform: 'translateX(-50%)', // Center logo
+          top: '10px',
+        }}
+      />
+
       {/* Icon stays on the far right */}
       <MenuOutlined
         style={{
           color: 'white',
-          fontSize: '24px',
+          fontSize: '30px',
+       
           position: 'absolute',
           right: '10px', // Align to the right
+          top: '15px',  // Adjust to align with logo
         }}
         onClick={showDrawer}
       />
 
       {/* Menu text centered */}
-      <span
-        style={{
-          color: 'white',
-          fontSize: '18px',
-          position: 'absolute',
-          left: '50%',
-          transform: 'translateX(-50%)', // Center the text
-          fontWeight: 'bold',
-        }}
-      >
-        Menu
-      </span>
+   
 
       <Drawer
         title="Menu"

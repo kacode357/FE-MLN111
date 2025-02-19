@@ -13,7 +13,6 @@ import Contact from './components/Contact/Contact';
 import KarlMarx from './components/KarlMarx/KarlMarx';
 import { Layout } from 'antd';
 
-
 export default function App() {
   const isDesktop = useMediaQuery({ minWidth: 768 });
 
@@ -24,7 +23,12 @@ export default function App() {
           {/* Chỉ hiển thị header tương ứng với kích thước màn hình */}
           {isDesktop ? <HeaderDesktop /> : <HeaderMobile />}
 
-          <Layout style={{ paddingTop: '60px', backgroundColor: '#08142c' }}>
+          <Layout
+            style={{
+              paddingTop: isDesktop ? '90px' : '30px', // Conditional paddingTop based on screen size
+              backgroundColor: '#08142c',
+            }}
+          >
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/genY" element={<GenY />} />
